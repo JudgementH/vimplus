@@ -144,7 +144,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -163,6 +163,9 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'rhysd/clever-f.vim'
 Plug 'vim-scripts/indentpython.vim'
 
+Plug 'preservim/nerdcommenter'
+Plug 'voldikss/vim-floaterm'
+
 " 加载自定义插件
 if filereadable(expand($HOME . '/.vimrc.custom.plugins'))
     source $HOME/.vimrc.custom.plugins
@@ -172,6 +175,7 @@ call plug#end()
 
 " load vim default plugin
 runtime macros/matchit.vim
+
 
 " 编辑vimrc相关配置文件
 nnoremap <leader>e :edit $MYVIMRC<cr>
@@ -355,6 +359,26 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 nnoremap <leader>g :GV<cr>
 nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
+
+" commenter
+let g:NERDCreateDefaultMappings = 1
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDAltDelims_java = 1
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
+
+" floaterm
+noremap <c-t> :call FloatTerm()<CR>
+tnoremap <silent> <c-t> <c-\><c-n>:FloatermToggle<cr>
+
+def FloatTerm()
+    :w
+    :FloatermToggle
+enddef
 
 " 加载自定义配置
 if filereadable(expand($HOME . '/.vimrc.custom.config'))

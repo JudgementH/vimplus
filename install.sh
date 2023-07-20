@@ -491,8 +491,6 @@ function install_ycm()
 
     cd ~/.vim/plugged/YouCompleteMe
     distro=`get_linux_distro`
-    read -p "Please choose to compile ycm with python2 or python3, if there is a problem with the current selection, please choose another one. [2/3] " version
-
     echo "Compile ycm with python3."
     {
         # alpine 跳过该步骤
@@ -501,16 +499,16 @@ function install_ycm()
             echo "Apline Build, need without GLIBC."
             echo "##########################################"
             sed -i "273ilet g:ycm_clangd_binary_path='/usr/bin/clang'" ~/.vimrc
-            python3 ./install.py
+            /usr/bin/python3 ./install.py
             return
         fi
     } || {
-        python3 ./install.py --clang-completer
+        /usr/bin/python3 ./install.py --clang-completer
     } || {
         echo "##########################################"
         echo "Build error, trying rebuild without Clang."
         echo "##########################################"
-        python3 ./install.py
+        /usr/bin/python3 ./install.py
     }
 }
 
